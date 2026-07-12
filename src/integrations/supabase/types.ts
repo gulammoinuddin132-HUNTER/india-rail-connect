@@ -14,7 +14,244 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_passengers: {
+        Row: {
+          age: number
+          berth_preference: string | null
+          booking_id: string
+          coach: string | null
+          created_at: string
+          gender: string
+          id: string
+          name: string
+          seat_no: string | null
+          status: string
+        }
+        Insert: {
+          age: number
+          berth_preference?: string | null
+          booking_id: string
+          coach?: string | null
+          created_at?: string
+          gender: string
+          id?: string
+          name: string
+          seat_no?: string | null
+          status?: string
+        }
+        Update: {
+          age?: number
+          berth_preference?: string | null
+          booking_id?: string
+          coach?: string | null
+          created_at?: string
+          gender?: string
+          id?: string
+          name?: string
+          seat_no?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_passengers_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          arrival_time: string
+          booking_status: string
+          class_code: string
+          class_name: string
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          departure_time: string
+          from_code: string
+          from_station: string
+          id: string
+          journey_date: string
+          payment_status: string
+          pnr: string
+          quota: string
+          to_code: string
+          to_station: string
+          total_fare: number
+          train_id: string
+          train_name: string
+          train_number: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          arrival_time: string
+          booking_status?: string
+          class_code: string
+          class_name: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          departure_time: string
+          from_code: string
+          from_station: string
+          id?: string
+          journey_date: string
+          payment_status?: string
+          pnr: string
+          quota?: string
+          to_code: string
+          to_station: string
+          total_fare: number
+          train_id: string
+          train_name: string
+          train_number: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          arrival_time?: string
+          booking_status?: string
+          class_code?: string
+          class_name?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          departure_time?: string
+          from_code?: string
+          from_station?: string
+          id?: string
+          journey_date?: string
+          payment_status?: string
+          pnr?: string
+          quota?: string
+          to_code?: string
+          to_station?: string
+          total_fare?: number
+          train_id?: string
+          train_name?: string
+          train_number?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_train_id_fkey"
+            columns: ["train_id"]
+            isOneToOne: false
+            referencedRelation: "trains"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      saved_passengers: {
+        Row: {
+          age: number
+          created_at: string
+          gender: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          age: number
+          created_at?: string
+          gender: string
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          age?: number
+          created_at?: string
+          gender?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      trains: {
+        Row: {
+          arrival_time: string
+          classes: Json
+          created_at: string
+          departure_time: string
+          distance_km: number
+          duration_minutes: number
+          from_code: string
+          from_station: string
+          id: string
+          name: string
+          number: string
+          runs_on: string[]
+          to_code: string
+          to_station: string
+          train_type: string
+        }
+        Insert: {
+          arrival_time: string
+          classes: Json
+          created_at?: string
+          departure_time: string
+          distance_km: number
+          duration_minutes: number
+          from_code: string
+          from_station: string
+          id?: string
+          name: string
+          number: string
+          runs_on?: string[]
+          to_code: string
+          to_station: string
+          train_type: string
+        }
+        Update: {
+          arrival_time?: string
+          classes?: Json
+          created_at?: string
+          departure_time?: string
+          distance_km?: number
+          duration_minutes?: number
+          from_code?: string
+          from_station?: string
+          id?: string
+          name?: string
+          number?: string
+          runs_on?: string[]
+          to_code?: string
+          to_station?: string
+          train_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
