@@ -9,38 +9,161 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as PnrRouteImport } from './routes/pnr'
+import { Route as BookingsRouteImport } from './routes/bookings'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrainIdRouteImport } from './routes/train.$id'
+import { Route as CheckoutBookingIdRouteImport } from './routes/checkout.$bookingId'
+import { Route as BookingBookingIdRouteImport } from './routes/booking.$bookingId'
 
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PnrRoute = PnrRouteImport.update({
+  id: '/pnr',
+  path: '/pnr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingsRoute = BookingsRouteImport.update({
+  id: '/bookings',
+  path: '/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrainIdRoute = TrainIdRouteImport.update({
+  id: '/train/$id',
+  path: '/train/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutBookingIdRoute = CheckoutBookingIdRouteImport.update({
+  id: '/checkout/$bookingId',
+  path: '/checkout/$bookingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingBookingIdRoute = BookingBookingIdRouteImport.update({
+  id: '/booking/$bookingId',
+  path: '/booking/$bookingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/pnr': typeof PnrRoute
+  '/search': typeof SearchRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
+  '/checkout/$bookingId': typeof CheckoutBookingIdRoute
+  '/train/$id': typeof TrainIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/pnr': typeof PnrRoute
+  '/search': typeof SearchRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
+  '/checkout/$bookingId': typeof CheckoutBookingIdRoute
+  '/train/$id': typeof TrainIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/bookings': typeof BookingsRoute
+  '/pnr': typeof PnrRoute
+  '/search': typeof SearchRoute
+  '/booking/$bookingId': typeof BookingBookingIdRoute
+  '/checkout/$bookingId': typeof CheckoutBookingIdRoute
+  '/train/$id': typeof TrainIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/pnr'
+    | '/search'
+    | '/booking/$bookingId'
+    | '/checkout/$bookingId'
+    | '/train/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/pnr'
+    | '/search'
+    | '/booking/$bookingId'
+    | '/checkout/$bookingId'
+    | '/train/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/bookings'
+    | '/pnr'
+    | '/search'
+    | '/booking/$bookingId'
+    | '/checkout/$bookingId'
+    | '/train/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  BookingsRoute: typeof BookingsRoute
+  PnrRoute: typeof PnrRoute
+  SearchRoute: typeof SearchRoute
+  BookingBookingIdRoute: typeof BookingBookingIdRoute
+  CheckoutBookingIdRoute: typeof CheckoutBookingIdRoute
+  TrainIdRoute: typeof TrainIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pnr': {
+      id: '/pnr'
+      path: '/pnr'
+      fullPath: '/pnr'
+      preLoaderRoute: typeof PnrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bookings': {
+      id: '/bookings'
+      path: '/bookings'
+      fullPath: '/bookings'
+      preLoaderRoute: typeof BookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +171,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/train/$id': {
+      id: '/train/$id'
+      path: '/train/$id'
+      fullPath: '/train/$id'
+      preLoaderRoute: typeof TrainIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout/$bookingId': {
+      id: '/checkout/$bookingId'
+      path: '/checkout/$bookingId'
+      fullPath: '/checkout/$bookingId'
+      preLoaderRoute: typeof CheckoutBookingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/$bookingId': {
+      id: '/booking/$bookingId'
+      path: '/booking/$bookingId'
+      fullPath: '/booking/$bookingId'
+      preLoaderRoute: typeof BookingBookingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  BookingsRoute: BookingsRoute,
+  PnrRoute: PnrRoute,
+  SearchRoute: SearchRoute,
+  BookingBookingIdRoute: BookingBookingIdRoute,
+  CheckoutBookingIdRoute: CheckoutBookingIdRoute,
+  TrainIdRoute: TrainIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
