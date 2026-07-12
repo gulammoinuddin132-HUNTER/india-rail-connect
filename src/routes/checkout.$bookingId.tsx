@@ -57,8 +57,9 @@ function Checkout() {
         booking_status: "CONFIRMED",
         payment_method: method.toUpperCase(),
         paid_at: new Date().toISOString(),
-      })
+      } as any)
       .eq("id", bookingId);
+
     setProcessing(false);
     if (error) {
       toast.error("Payment failed.");
