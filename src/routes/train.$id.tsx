@@ -98,8 +98,10 @@ function TrainDetail() {
       return;
     }
 
+    if (!train) return;
     setSubmitting(true);
     try {
+
       const pnr = generatePNR();
       const { data: booking, error: bErr } = await supabase
         .from("bookings")
